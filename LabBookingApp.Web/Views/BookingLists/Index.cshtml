@@ -1,0 +1,60 @@
+﻿@model LabBookingApp.Domain.DTO.BookingListDto
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <div class="row-4">
+        <a asp-controller="BookingLists" asp-action="order" class="btn btn-info">Order now</a>
+    </div>
+
+    <div class="row m-4">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Apartment Name</th>
+                    <th scope="col">Price per night</th>
+                    <th scope="col">Total nights</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.allReservations.Count == 0)
+                {
+                    <tr>
+                        <td colspan="5">No active Products</td>
+                    </tr>
+                }
+                else
+                {
+                    @for (int i = 0; i < Model.allReservations.Count; i++)
+                    {
+                        var item = Model.allReservations[i];
+
+                        <tr>
+                            <th scope="row">@(i + 1)</th>
+                            <td>@item.Reservation.Apartment.ApartmentName</td>
+                            <td>@item.Reservation.Apartment.Price_per_night</td>
+                            <td>$@item.Number_of_nights</td>
+                            <td><a asp-controller="BookingLists" asp-action="DeleteFromBookingsList" asp-route-id="@item.Id" class="btn btn-danger">Delete From ShoppingCart</a></td>
+                        </tr>
+                    }
+                }
+            </tbody>
+            <tfoot class="thead-dark">
+                <tr>
+                    <th scope="col">TotalPrice:</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col">$@Model.totalPrice</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+</div>

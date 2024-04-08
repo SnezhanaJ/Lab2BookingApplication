@@ -1,0 +1,26 @@
+﻿@model LabBookingApp.Domain.Domain.BookReservation
+
+<h1>Add product to Shopping cart</h1>
+
+<div class="row">
+    <div class="col-4">
+
+        <form asp-action="AddToBookingListConfirmed">
+            <input type="hidden" asp-for="ReservationId" />
+
+            <div class="form-group">
+                <label asp-for="Reservation.Apartment.ApartmentName" class="control-label"></label>
+                <input disabled asp-for="Reservation.Apartment.ApartmentName" class="form-control" />
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Number_of_nights"></label>
+                <input asp-for="Number_of_nights" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add To Cart" class="btn-info" />
+            </div>
+        </form>
+    </div>
+</div>
